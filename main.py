@@ -20,6 +20,9 @@ def show_inefficient(hours, output):
             if hours[k] != 0:
                 efficiency = output[k] / (hours[k] / 2)
                 efficient_reps.append([k, efficiency])
+    
+    inefficient_reps.sort(key=lambda x : x[1])
+    efficient_reps.sort(key=lambda x : x[1])
 
     with open(f'{today}.txt', 'w') as f:
         f.write(f'Reps below target: {inefficient_reps}')
