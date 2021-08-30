@@ -13,13 +13,16 @@ def show_inefficient(hours, output):
         hours[value] = hours[value] * 2
 
     for k, k2 in zip(hours, output):
-        if hours[k] > output[k2]:
-            efficiency = output[k] / (hours[k] / 2)
-            inefficient_reps.append([k, efficiency])
-        else:
-            if hours[k] != 0:
+            if hours[k] > output[k2]:
                 efficiency = output[k] / (hours[k] / 2)
-                efficient_reps.append([k, efficiency])
+                if efficiency >= 2.0:
+                    efficient_reps.append([k, efficiency])
+                else:
+                    inefficient_reps.append([k, efficiency])
+            else:
+                if hours[k] != 0:
+                    efficiency = output[k] / (hours[k] / 2)
+                    efficient_reps.append([k, efficiency])
     
     inefficient_reps.sort(key=lambda x : x[1])
     efficient_reps.sort(key=lambda x : x[1])
